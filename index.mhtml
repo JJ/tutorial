@@ -99,7 +99,64 @@ Created commit 3c3d643: Fichero ejemplo añadido
     así que commit sólo hace un cambio en la versión local del
     repositorio. Para enviarlo al repositorio global, y que los demás
     se lo puedan bajar, se usa <code>push</code></p>
-<code class='ejemplo'>
+<code class='ejemplo'>git push git@github.com:JJ/tutorial.git</code>
+<p>Si os dais cuenta, el URL que hemos usado es diferente; mientras
+    que antes habíamos usado un URL genérico, que no permite cambiar
+    lo que hay, habrá que usar este de aquí para subir los cambios;
+    para lo que tendremos que tener permiso, claro.</p>
+
+<p>Si no tenemos permiso para modificar, siempre nos queda el consuelo
+    de actualizar lo que otros hayan cambiado. Y si subir los cambios
+    de llama <code>pull</code>, ¿cómo será para bajárselo?</p>
+<code class='ejemplo'>> git pull</code>
+<p>que responderá algo así por este estilo</p>
+<code class='ejemplo'>remote: Generating pack...
+remote: Done counting 5 objects.
+remote: Result has 3 objects.
+remote: Deltifying 3 objects...
+remote:  100% (3/3) done
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Unpacking 3 objects...
+ 100% (3/3) done
+* refs/remotes/origin/master: fast forward to branch 'master' of git://github.com/JJ/tutorial
+  old..new: 608f3d3..e3eb172
+Merge made by recursive.
+ index.mhtml |  187 ++++++++++++++++++++++++++---------------------------------
+ 1 files changed, 82 insertions(+), 105 deletions(-)</code>
+<p>lo que, por cierto, se hace bastante rápido. Git tiene en cuenta
+    cuáles son los cambios por fichero, y en este momento, si hay
+    algún cambio local que entre en conflicto con la actualización,
+    también lo diría.</p>
+
+<p>Con esto más o menos se puede manejar con git:
+    clone-add-commit-pull-push y listo</p>
+
+
+<& h2.mhtml, h1 => $h1, h2 => \$h2, titulo => 'Creando repositorios',
+  abbrev => 'creacion' &>
+
+<p>Tampoco es que sea demasiado complicado lo de crear un repositorio,
+    y es equivalente a como se hace con otros sistemas. Siplemente
+    <code>git init</code> seguido por lo que se ha comentado
+    anteriormente: add (si es necesario), commit y push. En <a
+    href='http://crysol.inf-cr.uclm.es/node/797'>este tutorial explica
+    también como hacer un puñaillo de cosas más, como añadir varias
+    personas al desarrollo. La idea es que no es necesario un
+    repositorio central: dos personas pueden ir fusionando sus
+    repositorios, sin necesidad de recurrir a uno central.</a>
+
+<& h2.mhtml, h1 => $h1, h2 => \$h2, titulo => 'Leer más',
+  abbrev => 'mas' &>
+
+<p>Un <a href='http://git.or.cz/course/svn.html'>tutorial de git</a>
+      en el mismo sitio donde se desarrolla git, <a
+      href='http://www.kernel.org/pub/software/scm/git/docs/cvs-migration.html'>git
+      para usuarios de cvs</a>, y <a
+      href='http://www.kernel.org/pub/software/scm/git/docs/tutorial.html'>una
+      escueta introducción con unos 20 comandos</a>. Git tiene varias
+      decenas de comandos, e incluso un interfaz gráfico (o a través
+      de web), así que por un lado no resulta difícil de usar, pero
+      resulta un poco más complicado de dominar.</p>
 
 <& footer.mhtml &>
 
