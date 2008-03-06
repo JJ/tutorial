@@ -1,0 +1,21 @@
+<%perl>#  <!-- -*- html -*- -->
+sub en_us {
+  my $word=shift;
+  $word =~ s/ /_/g;
+  return $word;
+}
+
+my $txt = $m->content;
+$txt =~ s{:wiki:([^:]+?):}{"<a href='http://es.wikipedia.com/wiki/\u".ucfirst(en_us($1))."'>$1</a>"}eg;
+$txt =~ s{:jmerelo:([^:]+?):([^:]+?):}{"<a href='http://geneura.ugr.es/~jmerelo/$1'>$2</a>"}eg;
+$txt =~ s{:AAP:([^:\#]+?):([^:]+?):}{"<a href='http://geneura.ugr.es/~jmerelo/asignaturas/AAP/AAP-$1.mhtml'>$2</a>"}eg;
+$txt =~ s{:AAP:([^:]+?)\#(\w+):([^:]+?):}{"<a href='http://geneura.ugr.es/~jmerelo/asignaturas/AAP/AAP-$1.mhtml#$2'>$3</a>"}eg;
+$txt =~ s{__([^_]+?)_}{<em>$1</em>}g;
+$txt =~ s{\*(\w+?)\*}{<strong>$1</strong>}g;
+$txt =~ s{\$([\w\+\.\d\#, >!/-:]+?)\$}{<code>$1</code>}g;
+$txt =~ s{js> (.+?)\n}{<strong>js> $1</strong>\n}g;
+</%perl>
+<% $txt %>
+
+
+

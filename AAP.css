@@ -1,0 +1,228 @@
+/* 
+Fichero............: AAP.css
+Autor..............: (C) GeNeura Team, 2006
+                     Este fichero: J.J. Merelo: jmerelo@geneura.ugr.es
+Fecha..............: 21-Dic-2006
+Descripcion........: Hoja de estilo para cursos y tutoriales.
+Modificaciones.....:
+*/
+
+body { background-color: navajoWhite; }
+p {
+  color: darkblue;
+  font-family:  Verdana, Helvetica, Arial, sans-serif;
+  text-indent: 5%;
+  margin-right: 5%;
+  margin-left: 5%;
+
+}
+ul {
+  color: darkblue;
+  font-family:  Verdana, Helvetica, Arial, sans-serif;
+  margin-right: 5%;
+  margin-left: 5%;
+
+}
+
+ol {
+  background-color: inherit; 
+  font-family:  Verdana, Helvetica, Arial, sans-serif;
+  margin-right: 5%;
+  margin-left: 5%;
+
+}
+
+ul.otro {
+  background-color: inherit; 
+  font-size:small;
+  color: darkblue;
+  font-family:  Verdana, Helvetica, Arial, sans-serif;
+}
+
+code.ejemplo {
+  font-size:medium;
+  white-space:pre;	
+  display: block;
+  padding: 2pt;
+  background-color: lightYellow;
+  color: darkBlue;
+  border-style: double;
+  border-color: #000080;
+  border-width: 2pt;
+  font-family: Courier New, Courier;
+  text-indent: 0%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+p.ejemplo {
+  font-size:medium;
+  display: block;
+  padding: 2pt;
+  background-color: lightYellow;
+  color: black;
+  border-style: double;
+  border-color: #000080;
+  border-width: 2pt;
+  font-family: Courier New;
+  text-indent: 0%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+p.ejpre {
+  font-size:medium;
+  white-space:pre;
+  display: block;
+  padding: 2pt;
+  background-color: lightYellow;
+  color: black;
+  border-style: double;
+  border-color: #000080;
+  border-width: 2pt;
+  font-family: Courier New;
+  text-indent: 0%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+p.ejercicios {
+  font-size:medium;
+  padding: 2pt;
+  font-family:  Times, serif, Times New Roman;
+  background-color: seashell;
+  color: black;
+  border-style: solid;
+  border-color: darkblue;
+  border-width: 1pt;
+  text-indent: 0%;
+  margin-right: 20%;
+  margin-left: 8%;
+
+}
+
+div.ejemplo {
+  font-size:medium;
+  padding: 5px;
+  font-family:  Times, serif, Times New Roman;
+  background-color: beige;
+  color: black;
+  border-style: dashed;
+  border-color: darkblue;
+  border-width: 1pt;
+  text-indent: 2%;
+  margin-right: 10%;
+  margin-left: 10%;
+
+}
+
+div.ejercicios {
+  font-size:medium;
+  padding: 2pt;
+  font-family:  Times, serif, Times New Roman;
+  background-color: seashell;
+  color: black;
+  border-style: solid;
+  border-color: darkblue;
+  border-width: 1pt;
+  text-indent: 0%;
+  margin-right: 20%;
+  margin-left: 8%;
+
+}
+
+div.ejercicios:before { 
+  content: "Ejercicios";
+  background-color: lightblue;
+  font-size: large
+}
+
+div.tabla {
+  font-size:medium;
+  background-color: linen;
+  color: black;
+  border-style: double;
+  border-color: black;
+  border-width: 2pt;
+  float: right;
+  width: 250px;
+}
+
+div.tabla:before { 
+  content: "Contenido de esta sección";
+  font-weight: bold;
+}
+
+div.aclara {
+  background-color: #d0eaef;
+  color: black;
+  border-style: double;
+  border-color: black;
+  border-width: 2pt;
+  width: 400px;
+  float: right;
+  padding: 5px;
+  font-size: 0.8em;
+}
+
+div.aclara2 {
+  font-size:medium;
+  background-color: #d0eaef;
+  color: black;
+  border-style: double;
+  border-color: black;
+  border-width: 2pt;
+  width: 100%;
+  float: right;
+  padding: 2px;
+}
+
+div.nav {
+  font-size:medium;
+  background-color: lightgray;
+  color: black;
+  border-style: solid;
+  border-color: black;
+  border-width: 2pt;
+  width: 40%;
+  float: right;
+  padding: 4px;
+}
+
+div.licencia {
+  font-size:small;
+  background-color: lightblue;
+  color: black;
+  border-style: dashed;
+  border-color: black;
+  border-width: 1px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+
+div.objetivos {
+  background-color: white;
+  color: blue;
+  border-style: double;
+  border-color: blue;
+  border-width: 2pt;
+  width: 60%;
+  margin: 0 auto;
+  padding: 4px;
+}
+div.objetivos:before { 
+  content: "Objetivos";
+  background-color: lightblue;
+  font-size: large
+}
+
+h1 {font-size:xx-large; font-family:Arial, Verdana, Helvetica, sans-serif}
+h2 {font-size:x-large; font-family:Arial, Verdana, Helvetica, sans-serif}
+h3 {font-size:large; font-family:Arial, Verdana, Helvetica, sans-serif}
+
+span.user {
+  background-color:yellow;
+  font-size:1.2em;
+}

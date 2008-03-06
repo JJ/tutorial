@@ -1,0 +1,129 @@
+<%shared># <!-- -*- html -*- -->
+my $h2 = 1;  #Inicialización del contador
+my $ej = 1;  #Contador de ejercicios
+my $h1 = "P1";  #Número de este tema 
+</%shared>
+<& header.mhtml, titulo_tema => 'Tutorial de Jabber y Perl',
+      keywords => 'Computación distribuida, computación paralela, p2p, overlay, grid, evaluación de prestaciones, perl, XMPP, Jabber',
+      description => "Mini-tutorial de Jabber",
+      h1 => $h1 &>
+
+<&| filter.mhtml &>
+
+<div class='objetivos'> 
+	<ul>
+	  <li>Aprender a hacer programillas simples en Jabber</li>
+	</ul>
+      </div>  
+
+<div class='nav'><ul>
+	  <li> <A href='/~jmerelo/tutoriales/'><em>Otros tutoriales</em></A></li>
+	</ul>
+      </div>
+      
+<& h2.mhtml, h1 => $h1, h2 => \$h2, titulo => 'Introducción', abbrev => 'intro' &>
+
+<p>Jabber se inició como un programa de mensajería en Internet, pero
+actualmente se ha convertido en <a href='http://xmpp.org'>XMPP</a>
+(XML Message Passing and Presence), un protocolo de presencia y
+mensajería en Internet.</p>
+
+<p>De una forma básica, se pude desde programas de mensajería tales
+      como el Pidgin,  Psi, Kopete o GAIM; son programas multiprocolo
+      que permiten conectarse a servicios de mensajería. <a
+	href='http://talk.google.com'>Google Talk</a> también lo usa,
+      de forma que se puede conectar uno desde cualquier cliente
+      Jabber, aparte del cliente propio y la página web de Google Mail. Pero la
+      ventaja que tiene XMPP frente a otros protocolos es que es
+      abierto, y que además es extensible. </p>
+
+<p>En muchos sentidos, el protocolo XMPP es similar al HTTP, pero hay
+      muchísimas diferencias. Para empezar, el concepto central dentro
+      de XMPP es el de usuario, identificado por un JID (Jabber
+      ID). La JID debe ser única, y por eso se usa un recurso similar
+      al de los URIs que identifican recursos en Internet: los nombres
+      de usuario van cualificados por un nombre de dominio.</p>
+
+<p>Esa es una de las ventajas que tiene Jabber frente a otros sistemas
+      de mensajería instantánea: es un sistema descentralizado. Uno se
+      puede conectar a cualquier servidor Jabber que le apetezca,
+      siempre que haya alguna forma de autentificarse en el mismo. Los
+      servidores almacenan los nombres de usuarios y claves, y se
+      aseguran de que sean únicos; pero se puede ejecutar un servidor
+      jabber donde a uno le dé la gana, abriendo muchísimo las
+      posibilidades. </p>
+
+<p>Lo interesante es que al tratarse de un protocolo distribuido, se
+      puede chatear (a bajo nivel, moverse mensajes) de cualquier
+      cliente Jabber a cualquier otro cliente, pasando por los
+      servidores que correspondan, por eso es un protocolo de
+      enrutado.</p>
+
+<p>Vamos a ver qué es lo que se puede hacer con  un cliente Jabber,
+      para empezar</p>.
+
+<pre class="hl"><span class="slc">#!/usr/bin/ruby</span>
+
+require <span class="str">'rubygems'</span>
+require <span class="str">'xmpp4r-simple'</span>
+
+<span class="slc"># Send a message to a friend, asking for authorization if necessary:</span>
+im = Jabber<span class="sym">::</span>Simple<span class="sym">.</span><span class="kwd">new</span><span class="sym">(</span><span class="str">&quot;persona.una&#64;gmail.com&quot;</span><span class="sym">,</span> <span class="str">&quot;malrollositelodoy&quot;</span>)
+
+<span class="kwa">if</span> <span class="sym">!</span> im<span class="sym">.</span>connected?
+  puts <span class="str">&quot;Pos no va</span><span class="esc">\n</span><span class="str">&quot;</span>
+<span class="kwa">end</span>
+
+
+<span class="slc"># Send an authorization request to a user:</span>
+im<span class="sym">.</span><span class="kwd">add</span><span class="sym">(</span><span class="str">&quot;jjmerelo&#64;jabberes.org&quot;</span>)
+
+im<span class="sym">.</span><span class="kwd">deliver</span><span class="sym">(</span><span class="str">&quot;jjmerelo&#64;jabberes.org&quot;</span><span class="sym">,</span> <span class="str">&quot;Hola que te hola&quot;</span><span class="sym">, :</span>normal)
+
+
+<span class="slc"># Get presence updates from your friends, and print them out to the console:</span>
+<span class="slc"># (admittedly, this one needs some work)</span>
+im<span class="sym">.</span>presence_updates <span class="sym">{ |</span>update<span class="sym">|</span>
+  from     = update<span class="sym">[</span><span class="num">0</span><span class="sym">].</span>jid<span class="sym">.</span>strip<span class="sym">.</span>to_s
+  status   = update<span class="sym">[</span><span class="num">2</span><span class="sym">].</span>status
+  presence = update<span class="sym">[</span><span class="num">2</span><span class="sym">].</span>show
+  puts <span class="str">&quot;#{from} went #{presence}: #{status}&quot;</span>
+<span class="sym">}</span>
+
+
+</pre>
+
+<p>Aquí uso Ruby porque es donde se ve más claro el API. Para empezar
+      lo primero que hace uno es autentificarse ante un servidor. En
+      este caso usamos el propio servidor de Google, pero podíamos
+      haber usado otros: <a
+	href='http://jabberes.org'>Jabberes.org</a>, o <a
+	href='http://jabber.org'>Jabber.org</a>. Siempre hay que
+      autentificarse para poder iniciar el cliente. Y no sé muy bien
+      porqué, pero es así. </p>
+
+<p>A continuación comprobamos si estamos conectados. Porque todo puede
+      ser que se haya equivocado uno de servidor o cualquier cosa de
+      esas. Luego usamos una de las funciones del API: añadir un
+      usuario. Como Jabber está orientada a usuario, hace falta que se
+      dé de alta un usuario (que equivaldría a un servidor, o a llamar
+      a un URL en un servidor web) antes de poder hacer cualquier
+      cosa. Y posteriormente ya le podemos enviar un mensaje. Al
+      fin.</p>
+
+<p>Mientras tanto, pasan algunas cosas. Si no se ha enviado un mensaje
+      de presencia, lo primero que se hace es enviarlo: si no estás
+      "presente", no puedes hacer nada. Teóricamente, el cliente
+      debería encargarse automáticamente de ello. Una vez que te
+      conectas a un cliente y lo añades como <em>amigo</em>, estás
+      <em>suscrito</em> a él y te enterarás cada vez que conectes. Por
+      supuesto, también sucede al contrario: en las últimas líneas,
+      cada vez que se produce una actualización de la presencia de los
+      amigos, se imprimirá. En este caso no hará nada, porque no
+      estaremos conectados el tiempo suficiente, pero podríamos
+      estarlo. Es cuestión de intentarlo.</p>
+
+
+<& footer.mhtml &>
+
+</&>

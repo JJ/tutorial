@@ -1,0 +1,10 @@
+<%args>
+$titulo
+$abbrev
+$h1
+$h2
+</%args>
+% my $anchor=$h1.":".$abbrev;
+<h2><a name='<% $anchor %>'><% $h1 %>.<% $$h2 %> <% $titulo %> </a> <a href='#<% $anchor %>' style='font-size:small'>#</a></h2>
+% $$h2++;
+

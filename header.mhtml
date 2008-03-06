@@ -1,0 +1,24 @@
+<%args># <!-- -*- html -*- -->
+$titulo_tema
+$keywords
+$description
+$h1 
+</%args>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" >
+    <meta http-equiv="Content-Language" content="es" >
+    <meta name="generator" content="XEmacs + HTML::Mason + mod_perl">
+    <title>Tutoriales: <% $titulo_tema %></title>
+    <meta name="AUTHOR" content="Juan Julián Merelo Guervós">
+    <meta name="keywords" content="<% $keywords %>">
+    <meta name="description" content="<% $description %>">
+
+    <link rel ='stylesheet' type = "text/css" href = "AAP.css" title='normal'>
+    <link rel ='stylesheet' type = "text/css" href = "highlight.css" title='normal'>
+
+  </head>
+<body>
+<h1><a href='/~jmerelo/tutoriales'>Tutoriales</a>: <% $h1 %>
+      <% $titulo_tema %></h1>
